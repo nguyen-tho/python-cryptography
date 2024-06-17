@@ -12,8 +12,24 @@ def encrypt (text, s):
   
     return result 
    
+def decrypt(text, shift):
+    """Decrypts a text encrypted with the Caesar cipher with the given shift value.
+
+    Args:
+        text: The encrypted text to decrypt (str).
+        shift: The number of positions used to shift letters during encryption (int).
+
+    Returns:
+        The decrypted text (str).
+    """
+
+    return encrypt(text, -shift)  # Decrypt by shifting back by the negative shift
+
 text = input("\nSet your text\n")
-s = int(input("\nSet your shift\n"))
-print ("Text  : " + text)
-print ("Shift : " + str(s)) 
-print ("Cipher: " + encrypt(text,s)) 
+shift = int(input("\nSet your shift\n"))
+
+print("Text : " + text)
+print("Shift: " + str(shift))
+
+print("Cipher: " + encrypt(text, shift))
+print("Decrypted: " + decrypt(text, shift))
