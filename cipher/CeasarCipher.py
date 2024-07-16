@@ -25,11 +25,3 @@ def decrypt(text, shift):
 
     return encrypt(text, -shift)  # Decrypt by shifting back by the negative shift
 
-text = input("\nSet your text\n")
-shift = int(input("\nSet your shift\n"))
-
-print("Text : " + text)
-print("Shift: " + str(shift))
-
-print("Cipher: " + encrypt(text, shift))
-print("Decrypted: " + decrypt(text, shift))
