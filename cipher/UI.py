@@ -57,6 +57,7 @@ class CaesarUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
+        self.master.title("Ceasar Algorithm")
         self.pack()
         self.create_widgets()
 
@@ -108,38 +109,105 @@ class DESUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
+        self,master.title("DES Algorithm")
         self.pack()
         self.create_widgets()
 
     def create_widgets(self):
-        self.label = tk.Label(self, text="DES Algorithm")
-        self.label.pack()
         # Add DES specific UI components here
+        self.input_label = tk.Label(self, text="INPUT")
+        self.input_label.grid(row=0, column=0, padx=10, pady=10)
+        self.input_text = tk.Text(self, height=10, width=30)
+        self.input_text.grid(row=1, column=0, padx=10, pady=10)
+
+        self.output_label = tk.Label(self, text="OUTPUT")
+        self.output_label.grid(row=0, column=1, padx=10, pady=10)
+        self.output_text = tk.Text(self, height=10, width=30)
+        self.output_text.grid(row=1, column=1, padx=10, pady=10)
+
+        self.shift_label = tk.Label(self, text="SHIFT")
+        self.shift_label.grid(row=2, column=0, padx=10, pady=10)
+        self.shift_value = tk.Entry(self)
+        self.shift_value.grid(row=3, column=0, padx=10, pady=10)
+
+        self.encrypt_button = tk.Button(self, text="ENCRYPT", command=self.encrypt)
+        self.encrypt_button.grid(row=4, column=0, padx=10, pady=10)
+
+        self.decrypt_button = tk.Button(self, text="DECRYPT", command=self.decrypt)
+        self.decrypt_button.grid(row=4, column=1, padx=10, pady=10)
+
+        self.random_shift_button = tk.Button(self, text="RANDOM SHIFT", command=self.random_shift)
+        self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
 
 
 class AESUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
+        self.master.title("AES Algorithm")
         self.pack()
         self.create_widgets()
 
     def create_widgets(self):
-        self.label = tk.Label(self, text="AES Algorithm")
-        self.label.pack()
         # Add AES specific UI components here
+        self.input_label = tk.Label(self, text="INPUT")
+        self.input_label.grid(row=0, column=0, padx=10, pady=10)
+        self.input_text = tk.Text(self, height=10, width=30)
+        self.input_text.grid(row=1, column=0, padx=10, pady=10)
+
+        self.output_label = tk.Label(self, text="OUTPUT")
+        self.output_label.grid(row=0, column=1, padx=10, pady=10)
+        self.output_text = tk.Text(self, height=10, width=30)
+        self.output_text.grid(row=1, column=1, padx=10, pady=10)
+
+        self.shift_label = tk.Label(self, text="SHIFT")
+        self.shift_label.grid(row=2, column=0, padx=10, pady=10)
+        self.shift_value = tk.Entry(self)
+        self.shift_value.grid(row=3, column=0, padx=10, pady=10)
+
+        self.encrypt_button = tk.Button(self, text="ENCRYPT", command=self.encrypt)
+        self.encrypt_button.grid(row=4, column=0, padx=10, pady=10)
+
+        self.decrypt_button = tk.Button(self, text="DECRYPT", command=self.decrypt)
+        self.decrypt_button.grid(row=4, column=1, padx=10, pady=10)
+
+        self.random_shift_button = tk.Button(self, text="RANDOM SHIFT", command=self.random_shift)
+        self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
 
 
 class RSAUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
+        self.master = master
+        self.master.title("RSA Algorithm")
         self.pack()
         self.create_widgets()
 
     def create_widgets(self):
-        self.label = tk.Label(self, text="RSA Algorithm")
-        self.label.pack()
         # Add RSA specific UI components here
+        self.input_label = tk.Label(self, text="INPUT")
+        self.input_label.grid(row=0, column=0, padx=10, pady=10)
+        self.input_text = tk.Text(self, height=10, width=30)
+        self.input_text.grid(row=1, column=0, padx=10, pady=10)
+
+        self.output_label = tk.Label(self, text="OUTPUT")
+        self.output_label.grid(row=0, column=1, padx=10, pady=10)
+        self.output_text = tk.Text(self, height=10, width=30)
+        self.output_text.grid(row=1, column=1, padx=10, pady=10)
+
+        self.shift_label = tk.Label(self, text="SHIFT")
+        self.shift_label.grid(row=2, column=0, padx=10, pady=10)
+        self.shift_value = tk.Entry(self)
+        self.shift_value.grid(row=3, column=0, padx=10, pady=10)
+
+        self.encrypt_button = tk.Button(self, text="ENCRYPT", command=self.encrypt)
+        self.encrypt_button.grid(row=4, column=0, padx=10, pady=10)
+
+        self.decrypt_button = tk.Button(self, text="DECRYPT", command=self.decrypt)
+        self.decrypt_button.grid(row=4, column=1, padx=10, pady=10)
+
+        self.random_shift_button = tk.Button(self, text="RANDOM SHIFT", command=self.random_shift)
+        self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
 
 
 if __name__ == "__main__":
