@@ -140,16 +140,31 @@ class DESUI(tk.Frame):
         self.random_shift_button = tk.Button(self, text="RANDOM KEY", command=self.random_key)
         self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
         
-        self.key_len_label = tk.Label(self, text="KEY LENGTH")
-        self.key_len_listbox = tk.Listbox(self, width=10, height=10)
-        self.key_label.grid(row=2, column=1, padx=10, pady=10)
-        self.key_len_listbox.grid(row=3, column=1, padx=10, pady=10)
+    def encrypt(self):
+        key = binascii.unhexlify(self.key_value.get())
+        if len(key) != 8:
+            messagebox.showerror("Error", "Key must be 8 bytes long")
+            return
+        text = self.input_text.get("1.0", tk.END).strip()
+        encrypted_text = DES.encrypt(text, key)
+        self.output_text.delete("1.0", tk.END)
+        self.output_text.insert(tk.END, encrypted_text)
+
+    def decrypt(self):
+        key = binascii.unhexlify(self.key_value.get())
+        if len(key) != 8:
+            messagebox.showerror("Error", "Key must be 8 bytes long")
+            return
+        encrypted_text = self.input_text.get("1.0", tk.END).strip()
+        decrypted_text = DES.decrypt(encrypted_text, key)
+        self.output_text.delete("1.0", tk.END)
+        self.output_text.insert(tk.END, decrypted_text)
+
+    def random_key(self):
+        key = DES.random_key()
+        self.key_value.delete(0, tk.END)
+        self.key_value.insert(tk.END, binascii.hexlify(key).decode('utf-8'))
         
-        items = [16, 24, 32]
-        for item in items:
-            self.key_len_listbox.insert(tk.END, item)
-        
-    
         
 
 class AESUI(tk.Frame):
@@ -172,10 +187,10 @@ class AESUI(tk.Frame):
         self.output_text = tk.Text(self, height=10, width=30)
         self.output_text.grid(row=1, column=1, padx=10, pady=10)
 
-        self.shift_label = tk.Label(self, text="SHIFT")
-        self.shift_label.grid(row=2, column=0, padx=10, pady=10)
-        self.shift_value = tk.Entry(self)
-        self.shift_value.grid(row=3, column=0, padx=10, pady=10)
+        self.key_label = tk.Label(self, text="KEY")
+        self.key_label.grid(row=2, column=0, padx=10, pady=10)
+        self.key_value = tk.Entry(self)
+        self.key_value.grid(row=3, column=0, padx=10, pady=10)
 
         self.encrypt_button = tk.Button(self, text="ENCRYPT", command=self.encrypt)
         self.encrypt_button.grid(row=4, column=0, padx=10, pady=10)
@@ -185,6 +200,15 @@ class AESUI(tk.Frame):
 
         self.random_shift_button = tk.Button(self, text="RANDOM KEY", command=self.random_key)
         self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
+        
+        self.key_len_label = tk.Label(self, text="LENGTH KEY")
+        self.key_listbox = tk.Listbox(self, width=10, height=10)
+        self.key_len_label.grid(row=2, column=1, padx=10, pady=10)
+        self.key_listbox.grid(row=3, column=1, padx=10, pady=10)
+        
+        items = [16, 24, 32]
+        for item in items:
+            self.key_listbox.insert(tk.END, str(item))
 
 
 class RSAUI(tk.Frame):
