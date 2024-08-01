@@ -37,17 +37,3 @@ def decrypt_aes(key, ciphertext_base64):
     # Decrypt the ciphertext
     plaintext = cipher.decrypt_and_verify(ciphertext, tag)
     return plaintext.decode('utf-8')
-
-# Example usage
-if __name__ == "__main__":
-    key = generate_aes_key(32)
-    print("Key: ", key.hex())
-    plaintext = "This is a secret message."
-    print(f"Original: {plaintext}")
-    
-    encrypted = encrypt_aes(key, plaintext.encode('utf-8'))
-    print(f"Encrypted: {encrypted}")
-    
-    decrypted = decrypt_aes(key, encrypted)
-    print(f"Decrypted: {decrypted}")
-

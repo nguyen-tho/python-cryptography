@@ -4,6 +4,7 @@ import CeasarCipher
 import DES
 import AES
 import RSA
+import binascii
 from tkinter import messagebox
 import random
 class App(tk.Tk):
@@ -125,10 +126,10 @@ class DESUI(tk.Frame):
         self.output_text = tk.Text(self, height=10, width=30)
         self.output_text.grid(row=1, column=1, padx=10, pady=10)
 
-        self.shift_label = tk.Label(self, text="SHIFT")
-        self.shift_label.grid(row=2, column=0, padx=10, pady=10)
-        self.shift_value = tk.Entry(self)
-        self.shift_value.grid(row=3, column=0, padx=10, pady=10)
+        self.key_label = tk.Label(self, text="KEY")
+        self.key_label.grid(row=2, column=0, padx=10, pady=10)
+        self.key_value = tk.Entry(self)
+        self.key_value.grid(row=3, column=0, padx=10, pady=10)
 
         self.encrypt_button = tk.Button(self, text="ENCRYPT", command=self.encrypt)
         self.encrypt_button.grid(row=4, column=0, padx=10, pady=10)
@@ -136,9 +137,20 @@ class DESUI(tk.Frame):
         self.decrypt_button = tk.Button(self, text="DECRYPT", command=self.decrypt)
         self.decrypt_button.grid(row=4, column=1, padx=10, pady=10)
 
-        self.random_shift_button = tk.Button(self, text="RANDOM SHIFT", command=self.random_shift)
+        self.random_shift_button = tk.Button(self, text="RANDOM KEY", command=self.random_key)
         self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
-
+        
+        self.key_len_label = tk.Label(self, text="KEY LENGTH")
+        self.key_len_listbox = tk.Listbox(self, width=10, height=10)
+        self.key_label.grid(row=2, column=1, padx=10, pady=10)
+        self.key_len_listbox.grid(row=3, column=1, padx=10, pady=10)
+        
+        items = [16, 24, 32]
+        for item in items:
+            self.key_len_listbox.insert(tk.END, item)
+        
+    
+        
 
 class AESUI(tk.Frame):
     def __init__(self, master=None):
@@ -171,7 +183,7 @@ class AESUI(tk.Frame):
         self.decrypt_button = tk.Button(self, text="DECRYPT", command=self.decrypt)
         self.decrypt_button.grid(row=4, column=1, padx=10, pady=10)
 
-        self.random_shift_button = tk.Button(self, text="RANDOM SHIFT", command=self.random_shift)
+        self.random_shift_button = tk.Button(self, text="RANDOM KEY", command=self.random_key)
         self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
 
 
