@@ -1,4 +1,4 @@
-from cryptography.fernet import Fernet as fn
+"""from cryptography.fernet import Fernet as fn
 
 test_key = fn.generate_key()
 print(test_key)
@@ -29,3 +29,4 @@ f = ft(key)
 decrypted_message = f.decrypt(encypted_message)
 print("Your decrypted message: \n", decrypted_message)
 file.close()
+"""
