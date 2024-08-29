@@ -7,9 +7,9 @@ This is a simple app to demonstrate some cryptographic algorithms made by tkinte
   - RSA
 
 How to use:
-  - Step 1: clone this repository
+  - Step 1: clone this repository [https://github.com/nguyen-tho/python-cryptography.git]
     ```sh
-    git clone [https://github.com/nguyen-tho/python-cryptography.git](https://github.com/nguyen-tho/python-cryptography.git)
+    git clone https://github.com/nguyen-tho/python-cryptography.git
     ```
   - Step 2: install dependencies
     ```sh
