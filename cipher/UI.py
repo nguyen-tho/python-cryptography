@@ -276,25 +276,26 @@ class RSAUI(tk.Frame):
         
     def encrypt(self):
         # Encrypt the input text using the public key
-        public_key = binascii.unhexlify(self.puk_value.get())
+        #public_key = self.puk_value.get()
         text = self.input_text.get("1.0", tk.END).strip()
         encrypted_text = RSA.encrypt(text, public_key)
         self.output_text.delete("1.0", tk.END)
         self.output_text.insert(tk.END, encrypted_text)
     
     def decrypt(self):
-        private_key = binascii.unhexlify(self.puk_value.get())
+        #private_key = self.puk_value.get()
         text = self.input_text.get("1.0", tk.END).strip()
         encrypted_text = RSA.decrypt(text, private_key)
         self.output_text.delete("1.0", tk.END)
         self.output_text.insert(tk.END, encrypted_text)
     
     def random_key(self):
-        public_key, private_key = RSA.generate_key(self.key_len_value.get())
+        global public_key, private_key 
+        public_key, private_key = RSA.generate_key(int(self.key_len_value.get()))
         self.puk_value.delete(0, tk.END)
-        self.puk_value.insert(tk.END, binascii.hexlify(public_key).decode('utf-8'))
+        self.puk_value.insert(tk.END, str(public_key))
         self.prk_value.delete(0, tk.END)
-        self.prk_value.insert(tk.END, binascii.hexlify(private_key).decode('utf-8'))
+        self.prk_value.insert(tk.END, str(private_key))
 
 
 if __name__ == "__main__":

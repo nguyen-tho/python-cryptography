@@ -14,7 +14,7 @@ def decrypt(cipher_message, private_key):
     decrypttion_bytes = rsa.decrypt(cipher_message_byte, private_key)
     decryption = decrypttion_bytes.decode("utf-8")
     return decryption
-    
+
 #example
 public_key, private_key = generate_key(512)
 print(public_key)
