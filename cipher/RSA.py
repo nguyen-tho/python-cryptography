@@ -16,6 +16,7 @@ def decrypt(cipher_message, private_key):
     return decryption
 
 #example
+"""
 public_key, private_key = generate_key(512)
 print(public_key)
 print(private_key)
@@ -25,3 +26,4 @@ encrypted_message = encrypt(message, public_key)
 print(encrypted_message)
 decrypted_message = decrypt(encrypted_message, private_key)
 print(decrypted_message)
+"""
