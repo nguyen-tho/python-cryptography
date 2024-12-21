@@ -218,7 +218,7 @@ class AESUI(tk.Frame):
         self.random_shift_button.grid(row=4, column=2, padx=10, pady=10)
         
         self.key_len_label = tk.Label(self, text="LENGTH KEY")
-        self.key_listbox = tk.Listbox(self, width=10, height=10)
+        self.key_listbox = tk.Listbox(self.algo_frame, width=10, height=1, selectmode="single")
         self.key_len_label.grid(row=2, column=1, padx=10, pady=10)
         self.key_listbox.grid(row=3, column=1, padx=10, pady=10)
         
@@ -314,7 +314,7 @@ class RSAUI(tk.Frame):
         self.puk_value.insert(tk.END, str(public_key))
         self.prk_value.delete(0, tk.END)
         self.prk_value.insert(tk.END, str(private_key))
-
+        
 class SHAUI(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -322,6 +322,7 @@ class SHAUI(tk.Frame):
         self.pack()
         self.create_widget()
         
+    
     def create_widget(self):
         self.input_label = tk.Label(self, text="INPUT")
         self.input_label.grid(row=0, column=0, padx=10, pady=10)
@@ -332,20 +333,33 @@ class SHAUI(tk.Frame):
         self.output_label.grid(row=0, column=1, padx=10, pady=10)
         self.output_text = tk.Text(self, height=10, width=30)
         self.output_text.grid(row=1, column=1, padx=10, pady=10)
-        
+
         self.algo_label = tk.Label(self, text="SHA Algorithms")
-        self.algo_listbox = tk.Listbox(self, width=10, height=10)
         self.algo_label.grid(row=2, column=1, padx=10, pady=10)
-        self.algo_listbox.grid(row=3, column=1, padx=10, pady=10)
+
+        # Create a Frame to hold the listbox and scrollbar
+        self.algo_frame = tk.Frame(self)
+        self.algo_frame.grid(row=3, column=1, padx=10, pady=10)
+
+        self.algo_listbox = tk.Listbox(self.algo_frame, width=10, height=1, selectmode="single")
+        self.algo_listbox.pack(side="left", fill="both", expand=1)
         
-        items = ['sha256', 'sha512', 'sha224','sha1', 'sha3_256']
+        
+
+        items = ['sha256', 'sha512', 'sha224', 'sha1', 'sha3_256']
         for item in items:
             self.algo_listbox.insert(tk.END, str(item))
-        
+            
+        self.scroll_bar = tk.Scrollbar(self.algo_frame, orient="vertical", command=self.algo_listbox.yview)
+        self.scroll_bar.pack(side="right", fill="y")
+
+        #self.scroll_bar.config(command=lambda *args: on_scroll(*args))
+
         self.hash_button = tk.Button(self, text='Hash', command=self.hash_function)
         self.hash_button.grid(row=3, column=0, padx=10, pady=10)
         
     
+        
     def hash_function(self):
         text = self.input_text.get("1.0", tk.END).strip()
         selected_index = self.algo_listbox.curselection()
